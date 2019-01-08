@@ -44,6 +44,10 @@ allprojects {
                     def version = new JsonSlurper().parseText(file.text).version
                     details.useVersion "r${version.tokenize('.')[0]}"
                 }
+                if (details.requested.group == 'com.google.android.gms'
+                        && details.requested.name.contains('play-services-') ) {
+                    details.useVersion "15.0.1"
+                }
             }
         }
     }
